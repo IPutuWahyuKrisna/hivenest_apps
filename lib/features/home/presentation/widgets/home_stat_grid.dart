@@ -53,7 +53,7 @@ class HomeStatGrid extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1.15,
+        childAspectRatio: 1.05,
       ),
       itemCount: items.length,
       itemBuilder: (_, i) => _StatCard(item: items[i]),
