@@ -11,7 +11,7 @@ class AppConstants {
 
   static const String baseUrl = String.fromEnvironment(
     'BASE_URL',
-    defaultValue: 'https://hives.devplayhouse.com/api',
+    defaultValue: 'https://v1.honeysibetan.web.id/api',
   );
 
   static String get imageBaseUrl => baseUrl.replaceAll('/api', '');

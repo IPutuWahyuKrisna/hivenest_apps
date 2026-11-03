@@ -59,7 +59,7 @@ Isi env.json kira-kira seperti ini:
 
     {
       "APP_ENV": "development",
-      "BASE_URL": "https://hives.devplayhouse.com/api"
+      "BASE_URL": "https://v1.honeysibetan.web.id/api"
     }
 
 Keterangan:
