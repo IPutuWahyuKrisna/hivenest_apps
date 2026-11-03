@@ -1,0 +1,186 @@
+================================================================
+  HIVENEST APPS - CARA MENJALANKAN DARI AWAL
+  Panduan dari clone sampai aplikasi jalan di HP/emulator
+
+  CATATAN: Aplikasi ini untuk ANDROID.
+  Folder ios/ memang ada (bawaan Flutter) tapi tidak dipakai
+  dan belum pernah diuji. Jangan dijadikan acuan.
+================================================================
+
+
+----------------------------------------------------------------
+BAGIAN 1 - YANG HARUS SUDAH TERPASANG DI KOMPUTER
+----------------------------------------------------------------
+
+1. Flutter SDK
+   Minimal Dart SDK 3.10.7 (lihat pubspec.yaml bagian "environment").
+   Download: https://docs.flutter.dev/get-started/install
+
+   Cek sudah terpasang atau belum:
+       flutter --version
+
+2. Android Studio
+   Sekalian install Android SDK + minimal 1 emulator.
+
+3. Git
+       git --version
+
+Cek semua sekaligus:
+       flutter doctor
+
+Pastikan bagian Android tidak ada tanda [X] merah sebelum lanjut.
+Kalau yang merah cuma bagian Xcode/iOS, abaikan saja - tidak dipakai.
+
+
+----------------------------------------------------------------
+BAGIAN 2 - CLONE PROJECT
+----------------------------------------------------------------
+
+    git clone https://github.com/IPutuWahyuKrisna/hivenest_apps.git
+    cd hivenest_apps
+
+
+----------------------------------------------------------------
+BAGIAN 3 - SIAPKAN FILE env.json  (PENTING, JANGAN DILEWAT)
+----------------------------------------------------------------
+
+File env.json TIDAK ikut di-upload ke GitHub (sengaja, karena
+berisi konfigurasi server). Jadi harus dibuat manual setelah clone.
+
+Caranya, salin dari file contoh yang sudah disediakan:
+
+    cp env.example.json env.json
+
+Di Windows (Command Prompt):
+
+    copy env.example.json env.json
+
+Isi env.json kira-kira seperti ini:
+
+    {
+      "APP_ENV": "development",
+      "BASE_URL": "https://hives.devplayhouse.com/api"
+    }
+
+Keterangan:
+  APP_ENV   -> "development" atau "production"
+  BASE_URL  -> alamat API backend, HARUS diakhiri "/api"
+
+Kalau backend-nya pindah server, cukup ganti BASE_URL di sini.
+
+
+----------------------------------------------------------------
+BAGIAN 4 - DOWNLOAD DEPENDENCY
+----------------------------------------------------------------
+
+    flutter pub get
+
+
+----------------------------------------------------------------
+BAGIAN 5 - JALANKAN APLIKASI
+----------------------------------------------------------------
+
+Colok HP Android (USB debugging ON) atau nyalakan emulator dulu.
+
+Cek device terdeteksi:
+
+    flutter devices
+
+Jalankan aplikasi:
+
+    flutter run --dart-define-from-file=env.json
+
+PENTING:
+Bagian "--dart-define-from-file=env.json" WAJIB ditulis.
+Kalau cuma "flutter run" saja, aplikasi tetap jalan tapi memakai
+alamat server bawaan di dalam kode, bukan yang ada di env.json.
+Ini sering bikin bingung: aplikasi jalan normal tapi datanya
+ternyata dari server yang salah.
+
+
+----------------------------------------------------------------
+BAGIAN 6 - BUILD UNTUK DIBAGIKAN
+----------------------------------------------------------------
+
+Build APK (file bisa langsung dikirim & diinstall di HP):
+
+    flutter build apk --release --dart-define-from-file=env.json
+
+Hasilnya ada di:
+    build/app/outputs/flutter-apk/app-release.apk
+
+Build App Bundle (untuk upload ke Google Play Store):
+
+    flutter build appbundle --release --dart-define-from-file=env.json
+
+Hasilnya ada di:
+    build/app/outputs/bundle/release/app-release.aab
+
+
+----------------------------------------------------------------
+BAGIAN 7 - CATATAN FIREBASE  (notifikasi push)
+----------------------------------------------------------------
+
+Aplikasi ini memakai Firebase Cloud Messaging untuk notifikasi.
+
+File android/app/google-services.json SUDAH ikut di repo, jadi
+setelah clone tidak perlu setting Firebase apa-apa lagi.
+Notifikasi langsung bisa jalan.
+
+
+----------------------------------------------------------------
+BAGIAN 8 - INFORMASI TEKNIS SINGKAT
+----------------------------------------------------------------
+
+Package name    : com.hive.hivenest
+Platform        : Android
+Arsitektur      : Clean Architecture + BLoC
+Peta            : flutter_map (OpenStreetMap)
+                  -> tidak butuh API key berbayar
+
+Izin yang diminta aplikasi:
+  - Internet
+  - Lokasi (untuk menandai posisi sarang di peta)
+  - Notifikasi
+  - Kamera / Galeri (untuk foto sarang)
+
+
+----------------------------------------------------------------
+BAGIAN 9 - KALAU ERROR
+----------------------------------------------------------------
+
+[ Error: "Target of URI doesn't exist" atau merah semua di editor ]
+    flutter pub get
+
+[ Aplikasi jalan tapi data tidak muncul / loading terus ]
+    1. Cek env.json sudah dibuat belum
+    2. Cek BASE_URL sudah benar dan diakhiri "/api"
+    3. Pastikan perintah run memakai --dart-define-from-file=env.json
+    4. Cek server backend-nya memang hidup (buka URL-nya di browser)
+
+[ Build gagal / error aneh setelah ganti versi Flutter ]
+    flutter clean
+    flutter pub get
+    flutter run --dart-define-from-file=env.json
+
+[ Error soal lisensi Android ]
+    flutter doctor --android-licenses
+    lalu ketik "y" sampai habis
+
+[ HP tidak terdeteksi di flutter devices ]
+    1. Pastikan USB debugging sudah ON di Developer Options
+    2. Cek kabel USB-nya mendukung transfer data, bukan cuma charge
+    3. Di HP biasanya muncul popup "Allow USB debugging?" -> Allow
+
+
+----------------------------------------------------------------
+RINGKASAN CEPAT (buat yang sudah paham Flutter)
+----------------------------------------------------------------
+
+    git clone https://github.com/IPutuWahyuKrisna/hivenest_apps.git
+    cd hivenest_apps
+    cp env.example.json env.json
+    flutter pub get
+    flutter run --dart-define-from-file=env.json
+
+================================================================
