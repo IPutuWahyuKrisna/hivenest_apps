@@ -1,0 +1,77 @@
+name: hivenest_apps
+description: "HiveNest Apps - Clean Architecture with BLoC"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State Management
+  flutter_bloc: ^9.1.0
+  bloc: ^9.0.0
+  equatable: ^2.0.7
+
+  # Dependency Injection
+  get_it: ^8.0.3
+
+  # Functional Programming (Either for error handling)
+  dartz: ^0.10.1
+
+  # Network
+  dio: ^5.8.0
+  pretty_dio_logger: ^1.4.0
+
+  # Navigation
+  go_router: ^14.8.1
+
+  # Local Storage
+  shared_preferences: ^2.3.3
+  flutter_secure_storage: ^9.2.4
+
+  # Utilities
+  logger: ^2.5.0
+  image_picker: ^1.1.2
+  geolocator: ^13.0.4
+
+  # Maps
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+
+  # Firebase
+  firebase_core: ^3.13.1
+  firebase_messaging: ^15.2.5
+  flutter_local_notifications: ^18.0.1
+  flutter_image_compress: ^2.5.1
+  path_provider: ^2.1.6
+  path: ^1.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.3
+
+  # Testing
+  bloc_test: ^10.0.0
+  mocktail: ^1.0.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/yellow_logo.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/yellow_logo.png"
+  remove_alpha_ios: true
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "73407818357",
+    "project_id": "honey-bin",
+    "storage_bucket": "honey-bin.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73407818357:android:e7f0711e8a5b5ccc32e63c",
+        "android_client_info": {
+          "package_name": "com.hive.hivenest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Fa5B0bo6t-aXMx31Fxo9b1lkIucrcTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
